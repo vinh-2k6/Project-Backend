@@ -32,11 +32,6 @@ public class UserService {
 		this.userRepository.save(user);
 	}
 
-	public User findUserById(int id) {
-		Optional<User> userOpt = this.userRepository.findById(id);
-		return userOpt.get();
-	}
-
 	public void updateUser(User inputUser) {
 		User currentUserInDB = this.findUserById(inputUser.getId());
 		if (currentUserInDB != null) {
@@ -54,7 +49,8 @@ public class UserService {
 
 	public User findUserByEmail(String email) {
 		Optional<User> userOpt = this.userRepository.findByEmail(email);
-		if(!userOpt.isPresent()) return null;
+		if (!userOpt.isPresent())
+			return null;
 		return userOpt.get();
 	}
 }
